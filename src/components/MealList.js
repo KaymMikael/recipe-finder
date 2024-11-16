@@ -3,7 +3,7 @@ import MealCard from "./MealCard";
 
 const MealList = ({ isLoading, meals, searchQuery }) => {
   return (
-    <div className="row m-1 gap-2 justify-content-center p-0">
+    <div className="row mx-1 gap-2 justify-content-center p-0">
       {!isLoading ? (
         meals && meals.length > 0 ? (
           meals.map((meal) => <MealCard meal={meal} key={meal.strMeal} />)
