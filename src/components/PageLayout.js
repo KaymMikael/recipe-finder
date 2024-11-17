@@ -1,5 +1,5 @@
 const PageLayout = ({ children }) => {
-  return <div className="container-md py-2">{children}</div>;
+  return <section className="container-md py-2">{children}</section>;
 };
 
 export default PageLayout;

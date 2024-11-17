@@ -8,7 +8,7 @@ const Header = () => {
       <PageLayout>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <Link className="navbar-brand" to={"/"}>
-            Recipe Finder
+            RECIPE FINDER
           </Link>
           <button
             className="navbar-toggler"

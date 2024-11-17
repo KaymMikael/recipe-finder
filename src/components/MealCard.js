@@ -9,7 +9,7 @@ const MealCard = ({ meal }) => {
         className="card-img-top"
         alt="Meal thumbnail "
       />
-      <div className="card-body">
+      <div className="card-body d-flex flex-column justify-content-between">
         <p>{meal.strMeal}</p>
         <Link to={`/meal/${meal.idMeal}`} className="btn btn-primary w-100">
           View

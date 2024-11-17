@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useState, useMemo } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import PageLayout from "../components/PageLayout";
 import SelectCategory from "../components/SelectCategory";
-import useFetch from "../hooks/useFetch";
 import MealList from "../components/MealList";
 
 const Home = () => {
@@ -10,17 +9,14 @@ const Home = () => {
   const searchQuery = searchParams.get("mealName");
   const [selectedCategory, setSelectedCategory] = useState("Beef");
 
-  const url = searchQuery
-    ? `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchQuery}`
-    : `https://www.themealdb.com/api/json/v1/1/filter.php?c=${selectedCategory}`;
-
-  const { data: meals, isLoading } = useFetch(url);
+  const memoizedSearchQuery = useMemo(() => searchQuery, [searchQuery]);
+  const memoizedSelectedCategory = useMemo(() => selectedCategory, [selectedCategory]);
 
   return (
     <PageLayout>
-      {!searchQuery ? (
+      {!memoizedSearchQuery ? (
         <SelectCategory
-          state={selectedCategory}
+          state={memoizedSelectedCategory}
           setState={setSelectedCategory}
         />
       ) : (
@@ -31,7 +27,7 @@ const Home = () => {
           Back to Home
         </Link>
       )}
-      <MealList isLoading={isLoading} meals={meals} searchQuery={searchQuery} />
+      <MealList searchQuery={memoizedSearchQuery} selectedCategory={memoizedSelectedCategory} />
     </PageLayout>
   );
 };
