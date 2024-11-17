@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import PageLayout from "../components/PageLayout";
 import SelectCategory from "../components/SelectCategory";
@@ -9,14 +9,11 @@ const Home = () => {
   const searchQuery = searchParams.get("mealName");
   const [selectedCategory, setSelectedCategory] = useState("Beef");
 
-  const memoizedSearchQuery = useMemo(() => searchQuery, [searchQuery]);
-  const memoizedSelectedCategory = useMemo(() => selectedCategory, [selectedCategory]);
-
   return (
     <PageLayout>
-      {!memoizedSearchQuery ? (
+      {!searchQuery ? (
         <SelectCategory
-          state={memoizedSelectedCategory}
+          state={selectedCategory}
           setState={setSelectedCategory}
         />
       ) : (
@@ -27,7 +24,7 @@ const Home = () => {
           Back to Home
         </Link>
       )}
-      <MealList searchQuery={memoizedSearchQuery} selectedCategory={memoizedSelectedCategory} />
+      <MealList searchQuery={searchQuery} selectedCategory={selectedCategory} />
     </PageLayout>
   );
 };
